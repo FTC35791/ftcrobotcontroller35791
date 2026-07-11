@@ -24,7 +24,7 @@ public class Java extends OpMode {
             leftDrive.setPower(-0.25);
         }
         if (gamepad1.right_stick_x > 0.1)
-            leftDrive.setPower(gamepad1.right_stick_x);if (gamepad1.left_stick_y > 0.1){
+            leftDrive.setPower(gamepad1.right_stick_x);if (gamepad1.left_stick_y > 0.1){}
     }
 
         void hardwareInit () {
