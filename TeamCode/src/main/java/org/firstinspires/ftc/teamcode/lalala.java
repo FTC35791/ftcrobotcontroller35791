@@ -1,9 +1,9 @@
-package org.firsti3570nspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-public class PlainOldCode extends OpMode {
+public class lalala extends OpMode {
 
     //declaring motor variables
     private DcMotor rightDrive;
@@ -17,7 +17,15 @@ public class PlainOldCode extends OpMode {
 
     @Override
     public void loop() {
-
+        // this is where you put the code to drive the robot
+        // any code here will loop about 50 times per second
+        if (gamepad1.a) {
+            rightDrive.setPower(.2);
+        }
+        if (gamepad1.b) {
+            leftDrive.setPower(.2);
+        }
+        rightDrive.setPower(gamepad1.right_stick_x);
     }
 
     public void hardwareInit() {
