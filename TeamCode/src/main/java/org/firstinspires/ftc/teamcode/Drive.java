@@ -1,9 +1,9 @@
-package org.firsti3570nspires.ftc.teamcode;
+package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-public class PlainOldCode extends OpMode {
+public class Drive extends OpMode {
 
     //declaring motor variables
     private DcMotor rightDrive;
@@ -17,6 +17,10 @@ public class PlainOldCode extends OpMode {
 
     @Override
     public void loop() {
+        double forward = gamepad1.left_stick_y;
+        double turn = gamepad1.left_stick_x;
+
+
 
     }
 
