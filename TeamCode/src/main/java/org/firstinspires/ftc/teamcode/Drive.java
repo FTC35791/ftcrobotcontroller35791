@@ -20,7 +20,8 @@ public class Drive extends OpMode {
         double forward = gamepad1.left_stick_y;
         double turn = gamepad1.left_stick_x;
 
-
+        leftDrive.setPower(-forward);
+        rightDrive.setPower(forward);
 
     }
 
