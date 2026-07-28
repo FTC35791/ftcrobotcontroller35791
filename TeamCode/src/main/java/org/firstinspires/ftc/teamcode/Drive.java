@@ -1,6 +1,5 @@
 package org.firstinspires.ftc.teamcode;
-
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class Drive extends OpMode {
@@ -16,13 +15,18 @@ public class Drive extends OpMode {
     }
 
     @Override
+import
     public void loop() {
         double forward = gamepad1.left_stick_y;
         double turn = gamepad1.left_stick_x;
 
-
-
+        leftDrive.setPower(-(forward- turn)/2);
+        rightDrive.setPower(forward+turn/2);
     }
+
+
+
+
 
     public void hardwareInit() {
         //setting motor variables to the actual motors in the robot
