@@ -11,7 +11,7 @@ public class hi extends OpMode {
 
     @Override
     public void init() {
-    }
+
         hardwareInit();
     }
 
