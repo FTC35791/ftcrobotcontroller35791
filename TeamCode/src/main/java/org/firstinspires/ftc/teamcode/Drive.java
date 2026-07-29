@@ -1,7 +1,5 @@
 package org.firstinspires.ftc.teamcode;
-
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 @TeleOp()
@@ -24,13 +22,13 @@ public class Drive extends OpMode {
         double turn = gamepad1.left_stick_x;
         double launcherSpeed = gamepad1.right_stick_y;
 
-        leftDrive.setPower(-(forward+turn)/2);
-        rightDrive.setPower((forward-turn)/2);
-
-        flyWheel.setPower(launcherSpeed/2);
-
-
+        leftDrive.setPower(-(forward- turn)/2);
+        rightDrive.setPower(forward+turn/2);
     }
+
+
+
+
 
     public void hardwareInit() {
         //setting motor variables to the actual motors in the robot
