@@ -19,13 +19,14 @@ public class lalala extends OpMode {
     public void loop() {
         // this is where you put the code to drive the robot
         // any code here will loop about 50 times per second
-        if (gamepad1.a) {
-            rightDrive.setPower(.2);
-        }
-        if (gamepad1.b) {
-            leftDrive.setPower(.2);
-        }
-        rightDrive.setPower(gamepad1.right_stick_x);
+        double forward = gamepad1.left_stick_y;
+        double turn = gamepad1.left_stick_x;
+        leftDrive.setPower(-(forward-turn)/2);
+        rightDrive.setPower(forward + turn/2);
+        //divide by two so that numbers are not greater than 1
+
+
+
     }
 
     public void hardwareInit() {
@@ -38,4 +39,3 @@ public class lalala extends OpMode {
         leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 }
-
