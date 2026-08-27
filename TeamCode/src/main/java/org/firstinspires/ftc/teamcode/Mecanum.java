@@ -28,10 +28,11 @@ public class Mecanum extends OpMode {
         sin = Math.sin(theta - Math.PI / 4);
         cos = Math.cos(theta - Math.PI / 4);
         max = Math.max(Math.abs(sin), Math.abs(cos));
+        turn = gamepad1.right_stick_x; //setting the variable
 
-        leftFrontPower = (power * sin / max + turn);
+        leftFrontPower = (power * sin / max - turn);
         rightFrontPower = (power * cos / max + turn);
-        leftBackPower = (power * cos / max + turn);
+        leftBackPower = (power * cos / max - turn);
         rightBackPower = (power * sin / max + turn);
 
         if((power + Math.abs(turn)) > 1) {
