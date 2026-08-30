@@ -30,7 +30,7 @@ public class Mecanum2 extends OpMode {
     public void loop() {
 
         currentHeading = pinpoint.getHeading(AngleUnit.RADIANS);
-        telemetry.addData("heading",currentHeading);
+        telemetry.addData("heading",Math.toDegrees(currentHeading));
         telemetry.update();
 
         power = (Math.sqrt(gamepad1.left_stick_x * gamepad1.left_stick_x) + (gamepad1.left_stick_y * gamepad1.left_stick_y));
