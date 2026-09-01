@@ -1,6 +1,7 @@
 repositories {
-    mavenCentral()
     google() // Needed for androidx
+    mavenCentral()
+    //maven {url = 'https://maven.brott.dev/'} //this added by DM 8/31/2026
 }
 
 dependencies {
@@ -13,5 +14,6 @@ dependencies {
     implementation 'org.firstinspires.ftc:FtcCommon:11.2.1'
     implementation 'org.firstinspires.ftc:Vision:11.2.1'
     implementation 'androidx.appcompat:appcompat:1.2.0'
+    //implementation 'com.gobilda.pinpoint:pinpoint:1.0.0' // Or latest version - this line added by DM 8/31/2026
 }
 

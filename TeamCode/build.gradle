@@ -26,4 +26,7 @@ android {
 
 dependencies {
     implementation project(':FtcRobotController')
+
+    // goBilda Pinpoint Driver
+    //implementation 'com.goBilda.pinpoint:pinpoint:1.0.0' //this line added by DM 8/31/2026
 }
