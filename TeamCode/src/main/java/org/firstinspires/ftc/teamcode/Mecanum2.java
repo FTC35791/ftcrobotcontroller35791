@@ -28,7 +28,7 @@ public class Mecanum2 extends OpMode {
 
     @Override
     public void loop() {
-
+        pinpoint.update();
         currentHeading = pinpoint.getHeading(AngleUnit.RADIANS);
         telemetry.addData("heading",Math.toDegrees(currentHeading));
         telemetry.update();
