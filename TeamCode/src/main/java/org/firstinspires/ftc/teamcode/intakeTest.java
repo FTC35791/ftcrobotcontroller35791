@@ -12,13 +12,7 @@ public class intakeTest extends OpMode{
 
     private DcMotor leftFront;
     private GoBildaPinpointDriver pinpoint;
-    private double power;
-    private double theta;
-    private double sin;
-    private double cos;
-    private double max;
-    private double turn;
-    private double currentHeading;
+
 
     @Override
     public void init() {
