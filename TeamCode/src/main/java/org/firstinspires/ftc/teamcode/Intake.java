@@ -51,7 +51,7 @@ public class Intake extends OpMode {
         rightBack.setPower(rightBackPower);
 
         rightIntake.setPosition(gamepad1.right_bumper? 5: 0.5);
-        leftIntake.setPosition(gamepad1.left_bumper? 5:0.5);
+        leftIntake.setPosition(gamepad1.left_bumper? 0.5:5);
     }
 
     public void hardwareInit() {
