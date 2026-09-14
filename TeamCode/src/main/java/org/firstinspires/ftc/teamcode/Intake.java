@@ -45,10 +45,12 @@ public class Intake extends OpMode {
         }
 
         //two motors need to be negative
-        intake.setPower(gamepad1.dpad_up? -0.5 : 0);
+        leftFront.setPower(leftFrontPower);
         rightFront.setPower(-rightFrontPower);
         leftBack.setPower(-leftBackPower);
         rightBack.setPower(rightBackPower);
+
+        intake.setPower(gamepad1.dpad_up? -0.5 : 0);
 
         rightIntake.setPosition(gamepad1.right_bumper? 5: 0.5);
         leftIntake.setPosition(gamepad1.left_bumper? 0.5:5);
@@ -56,7 +58,7 @@ public class Intake extends OpMode {
 
     public void hardwareInit() {
         rightFront = hardwareMap.get(DcMotor.class, "rightFront");
-        intake = hardwareMap.get(DcMotor.class, "leftFront");
+        leftFront = hardwareMap.get(DcMotor.class, "leftFront");
         rightBack = hardwareMap.get(DcMotor.class, "rightBack");
         leftBack = hardwareMap.get(DcMotor.class, "leftBack");
 
@@ -64,7 +66,7 @@ public class Intake extends OpMode {
         leftIntake = hardwareMap.get(Servo.class,"leftIntake");
 
         rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
