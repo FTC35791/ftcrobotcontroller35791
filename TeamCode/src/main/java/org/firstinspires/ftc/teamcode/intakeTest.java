@@ -7,12 +7,19 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 
+@TeleOp(name = "Pinpoint Encoder Direction Test", group = "Diagnostics")
 public class intakeTest extends OpMode{
 
 
     private DcMotor leftFront;
     private GoBildaPinpointDriver pinpoint;
-
+    private double power;
+    private double theta;
+    private double sin;
+    private double cos;
+    private double max;
+    private double turn;
+    private double currentHeading;
 
     @Override
     public void init() {
@@ -22,7 +29,7 @@ public class intakeTest extends OpMode{
     @Override
     public void loop() {
 
-       leftFront.setPower(gamepad1.left_stick_y/2);
+        leftFront.setPower(gamepad1.left_stick_y/2);
 
     }
 
@@ -31,5 +38,3 @@ public class intakeTest extends OpMode{
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 }
-
-

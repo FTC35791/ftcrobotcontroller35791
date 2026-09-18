@@ -2,13 +2,15 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
+@TeleOp()
 public class Java extends OpMode {
 
     //declaring motor variables
     private DcMotor rightDrive;
     private DcMotor leftDrive;
-
+    private DcMotor flyWheel;
     @Override
     public void init() {
         //calling hardware init (see bottom of code)
@@ -17,23 +19,26 @@ public class Java extends OpMode {
 
     @Override
     public void loop() {
-        if (gamepad1.a) {
-            rightDrive.setPower(0.5);
-        }
-        if (gamepad1.b) {
-            leftDrive.setPower(-0.25);
-        }
-        if (gamepad1.right_stick_x > 0.1)
-            leftDrive.setPower(gamepad1.right_stick_x);if (gamepad1.left_stick_y > 0.1){}
+        double forward = gamepad1.left_stick_y;
+        double turn = gamepad1.left_stick_x;
+        double launcherSpeed = gamepad1.right_stick_y;
+        leftDrive.setPower(-(forward+turn)/2);
+        rightDrive.setPower((forward-turn)/2);
+
+        flyWheel.setPower(launcherSpeed/2);
+
+
     }
 
-        void hardwareInit () {
-            //setting motor variables to the actual motors in the robot
-            rightDrive = hardwareMap.get(DcMotor.class, "rightDrive");
-            leftDrive = hardwareMap.get(DcMotor.class, "leftDrive");
 
-            //setting motor zero power behavior to brake
-            rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        }
+    public void hardwareInit() {
+        //setting motor variables to the actual motors in the robot
+        rightDrive = hardwareMap.get(DcMotor.class, "rightDrive");
+        leftDrive = hardwareMap.get(DcMotor.class, "leftDrive");
+        // adding a motor, flyWheel
+        flyWheel = hardwareMap.get(DcMotor.class,"flywheel");
+        //setting motor zero power behavior to brake
+        rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
+}
