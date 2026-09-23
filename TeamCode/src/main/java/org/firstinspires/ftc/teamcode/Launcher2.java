@@ -3,12 +3,10 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.Servo;
 
 @TeleOp
-public class Intake extends OpMode {
-    private DcMotor rightFront, leftFront, rightBack, leftBack, intake;
-    private Servo rightIntake, leftIntake;
+public class Launcher2 extends OpMode {
+    private DcMotor rightFront, leftFront, rightBack, leftBack, rightLauncher, leftLauncher;
     private double power;
     private double theta;
     private double sin;
@@ -16,7 +14,7 @@ public class Intake extends OpMode {
     private double max;
     private double turn;
 
-    private double rightFrontPower, leftFrontPower, rightBackPower, leftBackPower;
+    private double rightFrontPower, leftFrontPower, rightBackPower, leftBackPower, launcher;
 
     @Override
     public void init() {
@@ -44,16 +42,27 @@ public class Intake extends OpMode {
             rightBackPower /= power + turn;
         }
 
+        if (gamepad2.a) {
+            launcher = 1;
+        } else if (gamepad2.b) {
+            launcher = 0.75;
+        } else if (gamepad2.y) {
+            launcher = 0.5;
+        } else if (gamepad2.x) {
+            launcher = 0.25;
+        } else {
+            launcher = 0;
+        }
+
+        rightLauncher.setPower(-launcher);
+        leftLauncher.setPower(launcher);
+
         //two motors need to be negative
         leftFront.setPower(leftFrontPower);
         rightFront.setPower(-rightFrontPower);
         leftBack.setPower(-leftBackPower);
         rightBack.setPower(rightBackPower);
 
-        intake.setPower(gamepad2.left_stick_y);
-
-        rightIntake.setPosition(gamepad2.right_bumper? 5: 0);
-        leftIntake.setPosition(gamepad2.left_bumper? 0:5);
     }
 
     public void hardwareInit() {
@@ -62,12 +71,11 @@ public class Intake extends OpMode {
         rightBack = hardwareMap.get(DcMotor.class, "rightBack");
         leftBack = hardwareMap.get(DcMotor.class, "leftBack");
 
-        intake = hardwareMap.get(DcMotor.class,"intake");
+        rightLauncher = hardwareMap.get(DcMotor.class,"rightLauncher");
+        leftLauncher = hardwareMap.get(DcMotor.class,"leftLauncher");
 
-        rightIntake = hardwareMap.get(Servo.class,"rightIntake");
-        leftIntake = hardwareMap.get(Servo.class,"leftIntake");
-
-        intake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightLauncher.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftLauncher.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
         rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -75,3 +83,4 @@ public class Intake extends OpMode {
         leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
     }
 }
+
