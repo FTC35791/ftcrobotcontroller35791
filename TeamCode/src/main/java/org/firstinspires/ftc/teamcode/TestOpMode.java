@@ -16,6 +16,9 @@ public class TestOpMode extends BaseCodeTeleop{
      */
 
     public void loop(){
+        rightServo.setPower(super.SetServosSpeed(gamepad1.left_bumper));
+        leftServo.setPower(-super.SetServosSpeed(gamepad1.right_bumper));
+
         leftFront.setPower(super.getSpeeds(gamepad1.left_stick_x, gamepad1.left_stick_y,gamepad1.right_stick_x)[0]);
         rightFront.setPower(super.getSpeeds(gamepad1.left_stick_x, gamepad1.left_stick_y,gamepad1.right_stick_x)[1]);
         leftBack.setPower(super.getSpeeds(gamepad1.left_stick_x, gamepad1.left_stick_y,gamepad1.right_stick_x)[2]);

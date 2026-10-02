@@ -43,7 +43,9 @@ abstract public class BaseCodeTeleop extends OpMode {
 
         return new double[]{leftFrontPower,-rightFrontPower,-leftBackPower,rightBackPower};
     }
-
+    public double SetServosSpeed(boolean Power){
+        return (Power? 0.5:0);
+    }
     public void hardwareInit() {
         rightFront = hardwareMap.get(DcMotor.class, "rightFront");
         leftFront = hardwareMap.get(DcMotor.class, "leftFront");
@@ -54,5 +56,8 @@ abstract public class BaseCodeTeleop extends OpMode {
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightServo= hardwareMap.get(CRServo.class,"rightServo");
+        leftServo= hardwareMap.get(CRServo.class,"leftServo");
+
     }
 }
