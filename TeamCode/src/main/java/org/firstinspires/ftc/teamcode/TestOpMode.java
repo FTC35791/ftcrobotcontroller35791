@@ -1,5 +1,8 @@
 package org.firstinspires.ftc.teamcode;
 
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+@TeleOp
 public class TestOpMode extends BaseCodeTeleop{
     @Override
     public void init() {
@@ -11,6 +14,7 @@ public class TestOpMode extends BaseCodeTeleop{
     2-left back
     3- right back
      */
+
     public void loop(){
         leftFront.setPower(super.getSpeeds(gamepad1.left_stick_x, gamepad1.left_stick_y,gamepad1.right_stick_x)[0]);
         rightFront.setPower(super.getSpeeds(gamepad1.left_stick_x, gamepad1.left_stick_y,gamepad1.right_stick_x)[1]);

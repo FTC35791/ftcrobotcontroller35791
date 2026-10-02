@@ -2,7 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.*;
 
 @TeleOp
 abstract public class BaseCodeTeleop extends OpMode {
@@ -12,7 +12,7 @@ abstract public class BaseCodeTeleop extends OpMode {
 
     protected DcMotor leftBack;
 
-    private double rightFrontPower, leftFrontPower, rightBackPower, leftBackPower;
+    protected CRServo rightServo,leftServo;
 
 
 
