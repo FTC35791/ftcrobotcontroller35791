@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.*;
 
-@TeleOp
+
 abstract public class BaseCodeTeleop extends OpMode {
     protected DcMotor rightFront;
     protected DcMotor leftFront;
@@ -13,6 +13,9 @@ abstract public class BaseCodeTeleop extends OpMode {
     protected DcMotor leftBack;
 
     protected CRServo rightServo,leftServo;
+    protected DcMotor leftLauncher, rightLauncher;
+
+    protected DcMotor intake;
 
 
 
@@ -41,7 +44,7 @@ abstract public class BaseCodeTeleop extends OpMode {
 
         //two motors need to be negative
 
-        return new double[]{leftFrontPower,-rightFrontPower,-leftBackPower,rightBackPower};
+        return new double[]{leftFrontPower,rightFrontPower,-leftBackPower,rightBackPower};
     }
     public double SetServosSpeed(boolean Power){
         return (Power? 0.5:0);
@@ -51,6 +54,11 @@ abstract public class BaseCodeTeleop extends OpMode {
         leftFront = hardwareMap.get(DcMotor.class, "leftFront");
         rightBack = hardwareMap.get(DcMotor.class, "rightBack");
         leftBack = hardwareMap.get(DcMotor.class, "leftBack");
+
+        rightLauncher = hardwareMap.get(DcMotor.class,"rightLauncher");
+        leftLauncher = hardwareMap.get(DcMotor.class,"leftLauncher");
+
+        intake = hardwareMap.get(DcMotor.class, "intake");
 
         rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
