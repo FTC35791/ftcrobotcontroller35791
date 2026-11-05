@@ -29,6 +29,7 @@ public class TestOpMode extends BaseCodeTeleop {
         rightBack.setPower(super.getSpeeds(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x)[3]);
 
         setLauncher();
+        setIntake();
 
         telemetry.addData("launcher",laucherSpeed);
         telemetry.addData("launcher reversed?",reversedLauncher);
@@ -61,8 +62,8 @@ public class TestOpMode extends BaseCodeTeleop {
         }
     }
     public void setIntake() {
-        if (gamepad2.y) {
-            intake.setPower(0.5);
+        if (gamepad2.dpad_down) {
+            intake.setPower(-1);
         }
     }
 }
