@@ -7,10 +7,13 @@ public class TestOpMode extends BaseCodeTeleop {
 
     private double laucherSpeed = 0;
     private boolean reversedLauncher = false;
+    private boolean rightServoOn, leftServoOn;
 
     @Override
     public void init() {
         super.hardwareInit();
+        rightServoOn = false;
+        leftServoOn = false;
     }
     /*
     0- left front
@@ -64,6 +67,28 @@ public class TestOpMode extends BaseCodeTeleop {
     public void setIntake() {
         if (gamepad2.dpad_down) {
             intake.setPower(-1);
+        } if (gamepad2.dpad_up) {
+            intake.setPower(0);
+        }
+    }
+    public void setServo() {
+        if (gamepad2.right_bumper) {
+            rightServoOn = rightServoOn? false: true;
+        }
+        if (gamepad2.left_bumper) {
+            leftServoOn = leftServoOn? false: true;
+        }
+
+        if (leftServoOn) {
+            leftServo.setPower(1);
+        } else {
+            leftServo.setPower(0);
+        }
+
+        if (rightServoOn) {
+            rightServo.setPower(1);
+        } else {
+            rightServo.setPower(0);
         }
     }
 }
