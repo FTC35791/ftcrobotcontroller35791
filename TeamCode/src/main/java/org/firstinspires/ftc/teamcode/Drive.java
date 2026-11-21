@@ -1,41 +1,31 @@
 package org.firstinspires.ftc.teamcode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.*;
-import com.qualcomm.robotcore.hardware.DcMotor;
 
-public class Drive extends OpMode {
+public class Drive {
+    public double[] getSpeeds(double x1, double y1, double x2) {
 
-    //declaring motor variables
-    private DcMotor rightDrive;
-    private DcMotor leftDrive;
+        double power,theta,sin,cos,max,turn,leftFrontPower,leftBackPower,rightFrontPower,rightBackPower;
 
-    @Override
-    public void init() {
-        //calling hardware init (see bottom of code)
-        hardwareInit();
-    }
+        power = (Math.sqrt(x1 * x1) + (y1*y1));
+        theta = Math.atan2(y1, x1);
+        sin = Math.sin(theta - Math.PI / 4);
+        cos = Math.cos(theta - Math.PI / 4);
+        max = Math.max(Math.abs(sin), Math.abs(cos));
+        turn = x2; //setting the variable
 
-    @Override
-    public void loop() {
-        double forward = gamepad1.left_stick_y;
-        double turn = gamepad1.left_stick_x;
+        leftFrontPower = (power * sin / max - turn);
+        rightFrontPower = (power * cos / max + turn);
+        leftBackPower = (power * cos / max - turn);
+        rightBackPower = (power * sin / max + turn);
 
-        leftDrive.setPower(-(forward- turn)/2);
-        rightDrive.setPower(forward+turn/2);
-    }
+        if((power + Math.abs(turn)) > 1) {
+            leftFrontPower /= power + turn;
+            leftBackPower /= power + turn;
+            rightFrontPower /= power + turn;
+            rightBackPower /= power + turn;
+        }
 
+        //two motors need to be negative
 
-
-
-
-    public void hardwareInit() {
-        //setting motor variables to the actual motors in the robot
-        rightDrive = hardwareMap.get(DcMotor.class,"rightDrive");
-        leftDrive = hardwareMap.get(DcMotor.class,"leftDrive");
-
-        //setting motor zero power behavior to brake
-        rightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        leftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        return new double[]{leftFrontPower,-rightFrontPower,-leftFrontPower,rightBackPower};
     }
 }
-
