@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 @TeleOp
 public class TestOpMode extends BaseCodeTeleop {
 
+    private double speed = 1;
     private double laucherSpeed = 0;
     private boolean reversedLauncher = false;
     private boolean rightServoOn, leftServoOn;
@@ -26,13 +27,14 @@ public class TestOpMode extends BaseCodeTeleop {
         rightServo.setPower(super.SetServosSpeed(gamepad1.left_bumper));
         leftServo.setPower(-super.SetServosSpeed(gamepad1.right_bumper));
 
-        leftFront.setPower(super.getSpeeds(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x)[0]);
-        rightFront.setPower(super.getSpeeds(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x)[1]);
-        leftBack.setPower(super.getSpeeds(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x)[2]);
-        rightBack.setPower(super.getSpeeds(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x)[3]);
+        leftFront.setPower(speed * super.getSpeeds(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x)[0]);
+        rightFront.setPower(speed * super.getSpeeds(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x)[1]);
+        leftBack.setPower(speed * super.getSpeeds(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x)[2]);
+        rightBack.setPower(speed * super.getSpeeds(gamepad1.left_stick_x, gamepad1.left_stick_y, gamepad1.right_stick_x)[3]);
 
         setLauncher();
         setIntake();
+        setSpeed();
 
         telemetry.addData("launcher",laucherSpeed);
         telemetry.addData("launcher reversed?",reversedLauncher);
@@ -49,16 +51,10 @@ public class TestOpMode extends BaseCodeTeleop {
         } else if (gamepad2.dpadUpWasReleased() && laucherSpeed == 1) {
             laucherSpeed = 0;
         }
-        if (gamepad2.yWasReleased()) {
-            reversedLauncher = !reversedLauncher;
-        }
 
-        if (reversedLauncher && !gamepad2.x) {
+        if (!gamepad2.x) {
             rightLauncher.setPower(-laucherSpeed);
             leftLauncher.setPower(laucherSpeed);
-        } else if (!reversedLauncher && !gamepad2.x) {
-            rightLauncher.setPower(laucherSpeed);
-            leftLauncher.setPower(-laucherSpeed);
         }else {
             rightLauncher.setPower(0);
             leftLauncher.setPower(0);
@@ -89,6 +85,13 @@ public class TestOpMode extends BaseCodeTeleop {
             rightServo.setPower(1);
         } else {
             rightServo.setPower(0);
+        }
+    }
+    public void setSpeed() {
+        if(gamepad1.left_trigger > 0.5) {
+            speed = 0.5;
+        } else {
+            speed = 1;
         }
     }
 }

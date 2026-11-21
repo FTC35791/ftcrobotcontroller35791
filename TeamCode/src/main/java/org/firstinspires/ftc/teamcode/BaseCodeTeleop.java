@@ -44,7 +44,7 @@ abstract public class BaseCodeTeleop extends OpMode {
 
         //two motors need to be negative
 
-        return new double[]{leftFrontPower,rightFrontPower,-leftBackPower,rightBackPower};
+        return new double[]{leftFrontPower,-rightFrontPower,-leftBackPower,rightBackPower};
     }
     public double SetServosSpeed(boolean Power){
         return (Power? 0.5:0);
