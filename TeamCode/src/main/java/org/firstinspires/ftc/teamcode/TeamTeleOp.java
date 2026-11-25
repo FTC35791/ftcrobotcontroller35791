@@ -7,14 +7,13 @@ public class TeamTeleOp extends BaseCodeTeleop {
 
     private double speed = 1;
     private double launcherSpeed = 0;
-    private boolean rightServoOn, leftServoOn, firstIntakeOn, launcherOn;
+    private boolean firstIntakeOn, launcherOn;
 
 
     @Override
     public void init() {
         super.hardwareInit();
-        rightServoOn = false;
-        leftServoOn = false;
+        launcherOn = false;
         firstIntakeOn = false;
     }
     /*
@@ -37,37 +36,48 @@ public class TeamTeleOp extends BaseCodeTeleop {
         setIntake();
         setSpeed();
 
-        telemetry.addData("launcher", launcherSpeed *100);
+        telemetry.addData("launcher", launcherSpeed * 100);
         telemetry.update();
     }
 
     public void setLauncher() {
-        if(gamepad2.aWasReleased()) {
-
-            if(gamepad2.left_bumper) {
-                launcherSpeed = FARLAUNCHER;
-            } else if (gamepad2.right_bumper) {
-                launcherSpeed = CLOSELAUNCHER;
-            } else {
-                launcherSpeed = PERFECTLAUNCHER;
-            }
-        } else if(gamepad2.dpad_up) {
-            launcherSpeed += 0.01;
-        } else if(gamepad2.dpad_down) {
-            launcherSpeed -= 0.1;
-        } else if(gamepad2.y) {
-            launcherSpeed = 0;
+        if(gamepad2.aWasReleased() && !launcherOn) {
+            launcherOn = true;
+        }  else if(gamepad2.aWasReleased() && launcherOn) {
+            launcherOn = false;
         }
 
-        rightLauncher.setPower(-launcherSpeed);
-        leftLauncher.setPower(launcherSpeed);
+        if(launcherOn) {
+            if(gamepad2.leftBumperWasReleased()) {
+                launcherSpeed = super.CLOSELAUNCHER;
+            } else if(gamepad2.rightBumperWasReleased()) {
+                launcherSpeed = FARLAUNCHER;
+            }
+        }
+
+        if(gamepad2.dpad_up && launcherOn) {
+            launcherSpeed += 0.01;
+        } else if(gamepad2.dpad_down && launcherOn) {
+            launcherSpeed -= 0.1;
+        }
+
+        if(launcherOn) {
+            rightLauncher.setPower(-launcherSpeed);
+            leftLauncher.setPower(launcherSpeed);
+        } else {
+            rightLauncher.setPower(0);
+            leftLauncher.setPower(0);
+        }
+
 
     }
     public void setIntake() {
-        if (gamepad2.left_bumper && !firstIntakeOn) {
+        if (gamepad2.bWasReleased() && !firstIntakeOn) {
             intake.setPower(-1);
-        } if (gamepad2.left_bumper && firstIntakeOn) {
+            firstIntakeOn = true;
+        } if (gamepad2.bWasReleased() && firstIntakeOn) {
             intake.setPower(0);
+            firstIntakeOn = false;
         }
 
         if(gamepad2.x) {
