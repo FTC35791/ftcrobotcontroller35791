@@ -17,6 +17,7 @@ public class Drive {
         leftBackPower = (power * cos / max - turn);
         rightBackPower = (power * sin / max + turn);
 
+
         if((power + Math.abs(turn)) > 1) {
             leftFrontPower /= power + turn;
             leftBackPower /= power + turn;
@@ -26,6 +27,6 @@ public class Drive {
 
         //two motors need to be negative
 
-        return new double[]{leftFrontPower,-rightFrontPower,-leftFrontPower,rightBackPower};
+        return new double[]{leftFrontPower,-rightFrontPower,-leftBackPower,rightBackPower};
     }
 }

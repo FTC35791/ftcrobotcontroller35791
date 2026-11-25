@@ -52,19 +52,21 @@ public class TestOpMode extends BaseCodeTeleop {
             laucherSpeed = 0;
         }
 
-        if (!gamepad2.x) {
-            rightLauncher.setPower(-laucherSpeed);
-            leftLauncher.setPower(laucherSpeed);
-        }else {
-            rightLauncher.setPower(0);
-            leftLauncher.setPower(0);
-        }
+        rightLauncher.setPower(-laucherSpeed);
+        leftLauncher.setPower(laucherSpeed);
+
     }
     public void setIntake() {
         if (gamepad2.dpad_down) {
-            intake.setPower(-1);
+            intake.setPower(-0.75);
         } if (gamepad2.dpad_up) {
             intake.setPower(0);
+        }
+
+        if(gamepad2.x) {
+            secondIntake.setPower(1);
+        } else {
+            secondIntake.setPower(0);
         }
     }
     public void setServo() {

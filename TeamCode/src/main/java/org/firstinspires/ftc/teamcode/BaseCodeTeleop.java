@@ -9,6 +9,7 @@ abstract public class BaseCodeTeleop extends OpMode {
     protected DcMotor rightFront;
     protected DcMotor leftFront;
     protected DcMotor rightBack;
+    protected DcMotor secondIntake;
 
     protected DcMotor leftBack;
 
@@ -16,6 +17,14 @@ abstract public class BaseCodeTeleop extends OpMode {
     protected DcMotor leftLauncher, rightLauncher;
 
     protected DcMotor intake;
+
+    final protected boolean LAUNCHEREVERSED = false;
+    final protected double PERFECTLAUNCHER = 0.3;
+    final protected double FARLAUNCHER = 0.35;
+    final protected double CLOSELAUNCHER = 0.28;
+
+    // constants to be adjusted
+
 
 
 
@@ -59,6 +68,7 @@ abstract public class BaseCodeTeleop extends OpMode {
         leftLauncher = hardwareMap.get(DcMotor.class,"leftLauncher");
 
         intake = hardwareMap.get(DcMotor.class, "intake");
+        secondIntake = hardwareMap.get(DcMotor.class, "secondIntake");
 
         rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -66,6 +76,7 @@ abstract public class BaseCodeTeleop extends OpMode {
         leftBack.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         rightServo= hardwareMap.get(CRServo.class,"rightServo");
         leftServo= hardwareMap.get(CRServo.class,"leftServo");
+        secondIntake.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
     }
 }
