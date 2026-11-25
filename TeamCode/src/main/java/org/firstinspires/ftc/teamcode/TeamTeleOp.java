@@ -7,7 +7,7 @@ public class TeamTeleOp extends BaseCodeTeleop {
 
     private double speed = 1;
     private double launcherSpeed = 0;
-    private boolean rightServoOn, leftServoOn, firstIntakeOn;
+    private boolean rightServoOn, leftServoOn, firstIntakeOn, launcherOn;
 
 
     @Override
