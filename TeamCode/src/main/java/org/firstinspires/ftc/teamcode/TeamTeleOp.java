@@ -43,6 +43,7 @@ public class TeamTeleOp extends BaseCodeTeleop {
     public void setLauncher() {
         if(gamepad2.aWasReleased() && !launcherOn) {
             launcherOn = true;
+            launcherSpeed = PERFECTLAUNCHER;
         }  else if(gamepad2.aWasReleased() && launcherOn) {
             launcherOn = false;
         }
@@ -55,10 +56,10 @@ public class TeamTeleOp extends BaseCodeTeleop {
             }
         }
 
-        if(gamepad2.dpad_up && launcherOn) {
+        if(gamepad2.dpadUpWasReleased() && launcherOn) {
             launcherSpeed += 0.01;
-        } else if(gamepad2.dpad_down && launcherOn) {
-            launcherSpeed -= 0.1;
+        } else if(gamepad2.dpadDownWasReleased() && launcherOn) {
+            launcherSpeed -= 0.01;
         }
 
         if(launcherOn) {
@@ -75,7 +76,7 @@ public class TeamTeleOp extends BaseCodeTeleop {
         if (gamepad2.bWasReleased() && !firstIntakeOn) {
             intake.setPower(-1);
             firstIntakeOn = true;
-        } if (gamepad2.bWasReleased() && firstIntakeOn) {
+        } else if (gamepad2.bWasReleased() && firstIntakeOn) {
             intake.setPower(0);
             firstIntakeOn = false;
         }
